@@ -9,6 +9,7 @@ set(USE_mvIMPACT FALSE CACHE BOOL "Compile with mvImpact driver (bluefox USB2 + 
 set(USE_PYLON FALSE CACHE BOOL "Compile with pylon driver (Basler cameras)")
 set(USE_FLYCAP FALSE CACHE BOOL "Compile with flycap driver (FLIR cameras, predecessor of Spinnaker)")
 set(USE_V4L TRUE CACHE BOOL "Compile with Video4Linux support (generic webcams)")
+set(USE_NETWORK TRUE CACHE BOOL "Compile with Network Camera support (IP cameras via RTSP/HTTP)")
 set(USE_SPLITTER FALSE CACHE BOOL "Compile with Camera splitter support (virtual cameras with part of a full image)")
 
 if(USE_DC1394 AND USE_mvIMPACT)
@@ -19,19 +20,21 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 # Find third-party libraries
 find_package(OpenGL REQUIRED)
 find_package(Threads REQUIRED)
 find_package(Protobuf REQUIRED)
 find_package(PkgConfig REQUIRED)
-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5OpenGL REQUIRED)
 # Note: Bluefox SDK is not compatible with some components of OpenCV. Take care when enabling more.
 find_package(OpenCV REQUIRED COMPONENTS core imgproc imgcodecs videoio calib3d)
+find_library(ABSL_STATUS_LIB absl_status)
+find_library(ABSL_STRINGS_LIB absl_strings)
 
 include(src/shared/CMakeLists.txt.inc)
 
@@ -114,6 +117,15 @@ if( USE_V4L )
 else()
 	message(STATUS "Video 4 Linux disabled")
   set(V4L_LIBS)
+endif()
+
+if( USE_NETWORK )
+	add_definitions( -DNETWORK_CAMERA )
+	set (SHARED_SRCS ${SHARED_SRCS} ${shared_dir}/capture/capture_network.cpp)
+	set (SHARED_HEADERS ${SHARED_HEADERS} ${shared_dir}/capture/capture_network.h)
+	message(STATUS "Network Camera enabled")
+else()
+	message(STATUS "Network Camera disabled")
 endif()
 
 if( USE_SPLITTER )
@@ -266,6 +278,14 @@ set (libs
   ${V4L_LIBS}
   Eigen3::Eigen
 )
+
+# Add Abseil libraries if found
+if(ABSL_STATUS_LIB)
+  set(libs ${libs} ${ABSL_STATUS_LIB})
+endif()
+if(ABSL_STRINGS_LIB)
+  set(libs ${libs} ${ABSL_STRINGS_LIB})
+endif()
 target_link_libraries(sslvision ${libs} Qt5::Widgets)
 set (libs ${libs} sslvision)
 

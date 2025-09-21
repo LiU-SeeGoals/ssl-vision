@@ -113,6 +113,13 @@ CaptureThread::CaptureThread(int cam_id)
   captureSpinnaker = new CaptureSpinnaker(spinnaker, camId);
 #endif
 
+#ifdef NETWORK_CAMERA
+  captureModule->addItem("Network Camera");
+  network = new VarList("Network Camera");
+  settings->addChild(network);
+  captureNetwork = new CaptureNetwork(network, camId);
+#endif
+
 #ifdef CAMERA_SPLITTER
   splitter = new VarList("Splitter");
   captureModule->addItem("Splitter");
@@ -172,6 +179,10 @@ CaptureThread::~CaptureThread()
 
 #ifdef SPINNAKER
   delete captureSpinnaker;
+#endif
+
+#ifdef NETWORK_CAMERA
+  delete captureNetwork;
 #endif
 
 #ifdef CAMERA_SPLITTER
@@ -235,6 +246,11 @@ void CaptureThread::selectCaptureMethod() {
 #ifdef SPINNAKER
   else if(captureModule->getString() == "Spinnaker") {
     new_capture = captureSpinnaker;
+  }
+#endif
+#ifdef NETWORK_CAMERA
+  else if(captureModule->getString() == "Network Camera") {
+    new_capture = captureNetwork;
   }
 #endif
 #ifdef CAMERA_SPLITTER
