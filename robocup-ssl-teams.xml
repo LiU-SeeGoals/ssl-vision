@@ -232,7 +232,7 @@
 			90.000000
 		</Var>
 	</Var>
-  <Var name="The Bots" type="list">
+	<Var name="The Bots" type="list">
 		<Var name="Team Name" type="string">
 			The Bots
 		</Var>
