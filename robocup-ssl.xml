@@ -37,13 +37,13 @@
 				4350.000000
 			</Var>
 			<Var name="Goal Width" type="double" minval="" maxval="">
-				2220.000000
+				800.000000
 			</Var>
 			<Var name="Goal Depth" type="double" minval="" maxval="">
-				400.000000
+				200.000000
 			</Var>
 			<Var name="Goal Height" type="double" minval="" maxval="">
-				400.000000
+				1000.000000
 			</Var>
 			<Var name="Boundary Width" type="double" minval="" maxval="">
 				220.000000
@@ -2396,37 +2396,37 @@
 					false
 				</Var>
 				<Var name="focal length" type="double" minval="" maxval="">
-					499.984890
+					414.375329
 				</Var>
 				<Var name="principal point x" type="double" minval="" maxval="">
-					1102.918873
+					1056.022038
 				</Var>
 				<Var name="principal point y" type="double" minval="" maxval="">
-					515.497313
+					523.555381
 				</Var>
 				<Var name="distortion" type="double" minval="-1.000000" maxval="2.000000">
-					0.159241
+					0.110000
 				</Var>
 				<Var name="q0" type="double" minval="" maxval="">
-					-0.726895
+					-0.725611
 				</Var>
 				<Var name="q1" type="double" minval="" maxval="">
-					-0.684713
+					-0.686764
 				</Var>
 				<Var name="q2" type="double" minval="" maxval="">
-					-0.048032
+					-0.036184
 				</Var>
 				<Var name="q3" type="double" minval="" maxval="">
-					0.022023
+					0.023134
 				</Var>
 				<Var name="tx" type="double" minval="" maxval="">
-					-113.526788
+					56.013253
 				</Var>
 				<Var name="ty" type="double" minval="" maxval="">
-					2104.094987
+					2072.173408
 				</Var>
 				<Var name="tz" type="double" minval="0.000000" maxval="6500.000000">
-					1609.000000
+					1325.000000
 				</Var>
 			</Var>
 			<Var name="Calibration Parameters" type="list">
@@ -2435,10 +2435,10 @@
 						CP 0
 					</Var>
 					<Var name="Control point 0 image x" type="double" minval="" maxval="">
-						376.000000
+						382.000000
 					</Var>
 					<Var name="Control point 0 image y" type="double" minval="" maxval="">
-						287.000000
+						286.000000
 					</Var>
 					<Var name="Control point 0 field x" type="double" minval="" maxval="">
 						-3050.000000
@@ -2452,7 +2452,7 @@
 						CP 1
 					</Var>
 					<Var name="Control point 1 image x" type="double" minval="" maxval="">
-						1652.000000
+						1653.000000
 					</Var>
 					<Var name="Control point 1 image y" type="double" minval="" maxval="">
 						216.000000
@@ -2472,7 +2472,7 @@
 						1570.000000
 					</Var>
 					<Var name="Control point 2 image y" type="double" minval="" maxval="">
-						975.000000
+						977.000000
 					</Var>
 					<Var name="Control point 2 field x" type="double" minval="" maxval="">
 						0.000000
@@ -2489,7 +2489,7 @@
 						557.000000
 					</Var>
 					<Var name="Control point 3 image y" type="double" minval="" maxval="">
-						1047.000000
+						1041.000000
 					</Var>
 					<Var name="Control point 3 field x" type="double" minval="" maxval="">
 						0.000000
@@ -2505,7 +2505,7 @@
 					1.000000
 				</Var>
 				<Var name="line search corridor width" type="double" minval="" maxval="">
-					52.000000
+					50.000000
 				</Var>
 				<Var name="Image boundary for edge detection" type="double" minval="" maxval="">
 					10.000000
@@ -2736,7 +2736,7 @@
 				<Var name="re-read params" type="trigger">
 				</Var>
 				<Var name="Capture Module" type="stringenum">
-					None
+					Network Camera
 					<Var name="0" type="string">
 						None
 					</Var>
@@ -3541,12 +3541,13 @@
 			<Var name="Network Camera" type="list">
 				<Var name="Network Settings" type="list">
 					<Var name="Camera URL" type="string">
-						rtsp://192.168.1.10/axis-media/media.amp
+						rtsp://192.168.1.12/axis-media/media.amp
 					</Var>
 					<Var name="Username" type="string">
 						root
 					</Var>
 					<Var name="Password" type="string">
+						raswa151
 					</Var>
 					<Var name="Protocol" type="stringenum">
 						RTSP
@@ -3869,10 +3870,10 @@
 					150.000000
 				</Var>
 				<Var name="Image width" type="int" minval="0" maxval="">
-					0
+					1920
 				</Var>
 				<Var name="Image height" type="int" minval="0" maxval="">
-					0
+					1080
 				</Var>
 				<Var name="grid height" type="int" minval="" maxval="">
 					9
